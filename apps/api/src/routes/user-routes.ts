@@ -85,7 +85,7 @@ export async function userRoutes(app: FastifyInstance) {
 
     app.delete('/user/delete/:email', async (req, res) => {
         const { email } = req.params as { email: string }
-        
+
         try {
             const deleteUserService = new DeleteUserService(prismaUserRepository)
             await deleteUserService.execute(email)
