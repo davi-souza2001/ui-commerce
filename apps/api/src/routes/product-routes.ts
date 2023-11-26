@@ -30,7 +30,7 @@ export async function productRoutes(app: FastifyInstance) {
         }
     })
 
-    app.get('/product/list', async (req, res) => {
+    app.get('/product/list', async (_, res) => {
         try {
             const listUserService = new ListProductService(prismaProductRepository)
             const products = await listUserService.execute()

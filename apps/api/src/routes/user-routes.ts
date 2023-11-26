@@ -39,7 +39,7 @@ export async function userRoutes(app: FastifyInstance) {
         }
     })
 
-    app.get('/user/list', async (req, res) => {
+    app.get('/user/list', async (_, res) => {
         try {
             const listUserService = new ListUserService(prismaUserRepository)
             const users = await listUserService.execute()
