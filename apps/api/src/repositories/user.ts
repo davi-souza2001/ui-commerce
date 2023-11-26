@@ -6,4 +6,7 @@ export interface UserCreateData {
 
 export interface Users {
     create(data: UserCreateData): Promise<void>
+    list(): Promise<UserCreateData[]>
+    login(email: string, password: string): Promise<UserCreateData | null>
+    delete(email: string): Promise<void>
 }

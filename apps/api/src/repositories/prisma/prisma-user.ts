@@ -1,5 +1,5 @@
 import { prisma } from '../../prisma'
-import {  encryptPassword } from '../../utils/EncryptPassword'
+import {  comparePassword, encryptPassword } from '../../utils/EncryptPassword'
 import { UserCreateData, Users } from "../user"
 
 export class PrismaUsers implements Users {
@@ -11,6 +11,42 @@ export class PrismaUsers implements Users {
                 name: data.name,
                 email: data.email,
                 password: passwordHash,
+            }
+        })
+    }
+
+    async list(){
+        const users = await prisma.user.findMany()
+
+        return users
+    }
+
+    async login(email: string, password: string){
+        const userRequest = await prisma.user.findUnique({
+            where: {
+                email
+            }
+        })
+
+        const passwordMatch = comparePassword(password, userRequest?.password ?? '')
+
+        if(passwordMatch){
+            const user: UserCreateData = {
+                name: userRequest?.name ?? '',
+                email: userRequest?.email ?? '',
+                password: userRequest?.password ?? '',
+            }
+
+            return user
+        }
+
+        return null
+    }
+
+    async delete(email: string){
+        await prisma.user.delete({
+            where: {
+                email
             }
         })
     }

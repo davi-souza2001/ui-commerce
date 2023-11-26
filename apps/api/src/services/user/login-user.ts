@@ -1,35 +1,31 @@
 import { Users } from '../../repositories/user'
 
-export interface CreateUserServiceRequest {
-    name: string
+export interface LoginUserServiceRequest {
     email: string
     password: string
 }
 
-export class CreateUserService {
+export class LoginUserService {
     constructor(
         private userRepository: Users
     ) { }
 
-    async execute(request: CreateUserServiceRequest) {
-        const { email, name, password,  } = request
+    async execute(request: LoginUserServiceRequest) {
+        const { email, password, } = request
 
         if (!email) {
             throw new Error('Email is required!')
-        }
-
-        if (!name) {
-            throw new Error('Name is required!')
         }
 
         if (!password) {
             throw new Error('Password is required!')
         }
 
-        await this.userRepository.create({
+        const user = await this.userRepository.login(
             email,
-            name,
             password,
-        })
+        )
+
+        return user
     }
 }
