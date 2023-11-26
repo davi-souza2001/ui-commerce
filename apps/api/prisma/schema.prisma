@@ -16,3 +16,14 @@ model User {
 
   @@map("users")
 }
+
+model Product {
+  id String @id @default(uuid())
+
+  name        String
+  description String
+  price       Float
+  image       String
+
+  @@map("products")
+}

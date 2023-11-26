@@ -3,6 +3,7 @@ import jwt from '@fastify/jwt'
 import cors from '@fastify/cors'
 
 import { userRoutes } from './routes/user-routes'
+import { productRoutes } from './routes/product-routes'
 
 const app = fastify()
 
@@ -15,6 +16,7 @@ app.register(jwt, {
 })
 
 app.register(userRoutes)
+app.register(productRoutes)
 
 app.listen({ host: '0.0.0.0', port: process.env.PORT ? Number(process.env.PORT) : 3333 })
     .then(() => console.log('Server is running :)'))
