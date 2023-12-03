@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
+import { ChakraProvider } from '@chakra-ui/react'
 import { Poppins, Roboto } from 'next/font/google'
+
 import './globals.css'
 
 const poppins = Poppins({
@@ -8,7 +10,7 @@ const poppins = Poppins({
   variable: '--font-poppins',
 })
 
-export const roboto = Roboto({
+const roboto = Roboto({
   weight: ['100', '300', '400', '500', '700', '900'],
   subsets: ['latin'],
   variable: '--font-roboto',
@@ -26,7 +28,9 @@ export default function RootLayout({
 }) {
   return (
     <html className={`${poppins.variable} ${roboto.variable}`}>
-      <body>{children}</body>
+      <body className="font-sans">
+        <ChakraProvider>{children}</ChakraProvider>
+      </body>
     </html>
   )
 }
