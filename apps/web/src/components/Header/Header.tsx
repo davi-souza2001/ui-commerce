@@ -3,16 +3,16 @@ import Image from 'next/image'
 
 export const Header = () => {
   return (
-    <header className="h-20 w-full flex items-center justify-between bg-red-500">
-      <div className="h-full w-96 flex items-center justify-center bg-blue-500">
+    <header className="h-20 w-full flex items-center justify-between border-[1px] border-b-gray-200">
+      <div className="h-full w-96 flex items-center justify-center">
         <h1 className="text-2xl font-bold font-roboto">Exclusive</h1>
       </div>
       <div className="h-full w-full flex items-center justify-center">
-        <ul className="h-full w-96 flex items-center justify-around bg-orange-500">
-          <li className="font-semibold text-md">Home</li>
-          <li className="font-semibold text-md">Contact</li>
-          <li className="font-semibold text-md">About</li>
-          <li className="font-semibold text-md">Sign Up</li>
+        <ul className="h-full w-96 flex items-center justify-around">
+          <li className="font-semibold text-md cursor-pointer">Home</li>
+          <li className="font-semibold text-md cursor-pointer">Contact</li>
+          <li className="font-semibold text-md cursor-pointer">About</li>
+          <li className="font-semibold text-md cursor-pointer">Sign Up</li>
         </ul>
       </div>
       <div className="h-full w-96 flex items-center justify-center">

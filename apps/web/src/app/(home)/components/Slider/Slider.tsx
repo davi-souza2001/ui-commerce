@@ -1,34 +1,22 @@
 'use client'
 import { useKeenSlider } from 'keen-slider/react'
 import 'keen-slider/keen-slider.min.css'
+import { ProductCard } from './components/ProductCard'
 
 export const Slider = () => {
   const [ref] = useKeenSlider<HTMLDivElement>({
     slides: {
-      perView: 2,
+      perView: 6,
     },
   })
 
+  const itens = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
   return (
     <div ref={ref} className="keen-slider">
-      <div className="keen-slider__slide number-slide1 bg-slate-600 h-20 w-20">
-        1
-      </div>
-      <div className="keen-slider__slide number-slide2 bg-red-600 h-20 w-20">
-        2
-      </div>
-      <div className="keen-slider__slide number-slide3 bg-blue-600 h-20 w-20">
-        3
-      </div>
-      <div className="keen-slider__slide number-slide4 bg-orange-600 h-20 w-20">
-        4
-      </div>
-      <div className="keen-slider__slide number-slide5 bg-green-600 h-20 w-20">
-        5
-      </div>
-      <div className="keen-slider__slide number-slide6 bg-yellow-600 h-20 w-20">
-        6
-      </div>
+      {itens.map((item, index) => {
+        return <ProductCard key={item} slidePosition={index} />
+      })}
     </div>
   )
 }
