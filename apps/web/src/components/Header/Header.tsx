@@ -1,5 +1,7 @@
 import { Input, InputGroup, InputRightElement } from '@chakra-ui/react'
 import Image from 'next/image'
+import { CiHeart } from 'react-icons/ci'
+import { MdOutlineShoppingCart } from 'react-icons/md'
 
 export const Header = () => {
   return (
@@ -27,8 +29,12 @@ export const Header = () => {
             />
           </InputRightElement>
         </InputGroup>
-        <p className="ml-5">like</p>
-        <p className="mx-5">cart</p>
+        <p className="ml-5 cursor-pointer text-2xl p-2">
+          <CiHeart />
+        </p>
+        <p className="mx-5 cursor-pointer text-2xl p-2">
+          <MdOutlineShoppingCart />
+        </p>
       </div>
     </header>
   )
