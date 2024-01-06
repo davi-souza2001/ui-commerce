@@ -44,9 +44,12 @@ export const Header = () => {
         >
           <CiHeart />
         </Link>
-        <p className="mx-5 cursor-pointer text-2xl p-2">
+        <Link
+          href="/cart"
+          className="mx-5 cursor-pointer text-2xl p-2 rounded-md transition-all hover:bg-blue-500 hover:text-white"
+        >
           <MdOutlineShoppingCart />
-        </p>
+        </Link>
       </div>
     </header>
   )
