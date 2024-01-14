@@ -1,6 +1,5 @@
 import { Users } from '../../repositories/user'
 
-
 export class ListUserService {
     constructor(
         private userRepository: Users

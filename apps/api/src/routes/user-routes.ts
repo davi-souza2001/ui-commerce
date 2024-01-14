@@ -15,9 +15,7 @@ export async function userRoutes(app: FastifyInstance) {
         const createUserService = new CreateUserService(prismaUserRepository)
 
         try {
-            console.log('req.body :>> ', req.body)
-            console.log('name :>> ', name)
-            await createUserService.execute(req.body as CreateUserServiceRequest)
+            await createUserService.execute({data: {email, name, password}})
 
             const token = app.jwt.sign({
                 payload: {
@@ -54,14 +52,12 @@ export async function userRoutes(app: FastifyInstance) {
     })
 
     app.post('/user/login', async (req, res) => {
-        const { email, password } = req.body as LoginUserServiceRequest
+        const info = req.body as LoginUserServiceRequest
+        const {email, password } = info.data
         const loginUserService = new LoginUserService(prismaUserRepository)
 
         try {
-            const user = await loginUserService.execute({
-                email,
-                password,
-            })
+            const user = await loginUserService.execute({data: {email, password}})
 
             if (!user) {
                 return res.status(401).send({ message: 'Invalid credentials' })

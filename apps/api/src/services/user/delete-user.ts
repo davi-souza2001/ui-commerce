@@ -1,6 +1,5 @@
 import { Users } from '../../repositories/user'
 
-
 export class DeleteUserService {
     constructor(
         private userRepository: Users
