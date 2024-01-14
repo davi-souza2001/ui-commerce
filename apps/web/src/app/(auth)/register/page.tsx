@@ -1,4 +1,5 @@
 'use client'
+import { client } from '@/data/axios'
 import { zodResolver } from '@hookform/resolvers/zod'
 import Link from 'next/link'
 import { useForm } from 'react-hook-form'
@@ -27,6 +28,7 @@ const Register = () => {
 
   const handleRegister = async (data: CreateRegisterFormData) => {
     console.log(data)
+    await client.post('/user/create', { data })
   }
 
   return (

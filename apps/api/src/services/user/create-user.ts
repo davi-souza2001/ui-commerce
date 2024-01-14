@@ -1,18 +1,20 @@
 import { Users } from '../../repositories/user'
 
-export interface CreateUserServiceRequest {
+interface UserService{
     name: string
     email: string
     password: string
 }
-
+export interface CreateUserServiceRequest {
+    data: UserService
+}
 export class CreateUserService {
     constructor(
         private userRepository: Users
     ) { }
 
     async execute(request: CreateUserServiceRequest) {
-        const { email, name, password,  } = request
+        const { email, name, password } = request.data
 
         if (!email) {
             throw new Error('Email is required!')

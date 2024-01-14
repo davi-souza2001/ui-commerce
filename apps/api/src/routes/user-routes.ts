@@ -10,15 +10,14 @@ const prismaUserRepository = new PrismaUsers()
 
 export async function userRoutes(app: FastifyInstance) {
     app.post('/user/create', async (req, res) => {
-        const { name, email, password } = req.body as CreateUserServiceRequest
+        const info = req.body as CreateUserServiceRequest
+        const { email, name, password } = info.data
         const createUserService = new CreateUserService(prismaUserRepository)
 
         try {
-            await createUserService.execute({
-                name,
-                email,
-                password,
-            })
+            console.log('req.body :>> ', req.body)
+            console.log('name :>> ', name)
+            await createUserService.execute(req.body as CreateUserServiceRequest)
 
             const token = app.jwt.sign({
                 payload: {
