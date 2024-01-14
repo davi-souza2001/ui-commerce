@@ -8,16 +8,17 @@ const prismaProductRepository = new PrismaProducts()
 
 export async function productRoutes(app: FastifyInstance) {
     app.post('/product/create', async (req, res) => {
-        const { name, description, price, image } = req.body as CreateProductServiceRequest
+        const info = req.body as CreateProductServiceRequest
+        const { name, description, price, image } = info.data
         const createProductService = new CreateProductService(prismaProductRepository)
 
         try {
-            await createProductService.execute({
+            await createProductService.execute({data: {
                 name,
                 description,
                 price,
                 image,
-            })
+            }})
 
             return res.status(201).send({ message: 'Product created' })
 

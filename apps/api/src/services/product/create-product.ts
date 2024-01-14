@@ -1,10 +1,14 @@
 import { Products } from '../../repositories/products'
 
-export interface CreateProductServiceRequest {
+interface ProductService{
     name: string
     description: string
     price: number
     image?: string
+}
+
+export interface CreateProductServiceRequest {
+    data: ProductService
 }
 
 export class CreateProductService {
@@ -13,7 +17,7 @@ export class CreateProductService {
     ) { }
 
     async execute(request: CreateProductServiceRequest) {
-        const { description, name, price, image } = request
+        const { description, name, price, image } = request.data
 
         if (!description) {
             throw new Error('Description is required')
