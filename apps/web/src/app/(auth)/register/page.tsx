@@ -2,7 +2,9 @@
 import { client } from '@/data/axios'
 import { useToast } from '@chakra-ui/react'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { setCookie } from 'cookies-next'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
@@ -20,6 +22,7 @@ type CreateRegisterFormData = z.infer<typeof createRegisterFormSchema>
 
 const Register = () => {
   const toast = useToast()
+  const { push } = useRouter()
 
   const {
     register,
@@ -34,13 +37,14 @@ const Register = () => {
       const user = await client.post('/user/create', { data })
 
       if (user.data) {
-        console.log(user.data)
         toast({
           position: 'top-right',
           title: 'Success',
           isClosable: true,
           status: 'success',
         })
+        setCookie('token-login-ui-commerce', user.data.token)
+        push('/')
       }
     } catch (error: any) {
       toast({

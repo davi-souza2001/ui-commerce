@@ -1,9 +1,12 @@
 'use client'
 import { client } from '@/data/axios'
+import { useToast } from '@chakra-ui/react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import Link from 'next/link'
+import { setCookie } from 'cookies-next'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
+import { useRouter } from 'next/navigation'
 
 const createLoginFormSchema = z.object({
   email: z
@@ -17,6 +20,9 @@ const createLoginFormSchema = z.object({
 type CreateLoginFormData = z.infer<typeof createLoginFormSchema>
 
 const Login = () => {
+  const toast = useToast()
+  const { push } = useRouter()
+
   const {
     register,
     handleSubmit,
@@ -26,7 +32,27 @@ const Login = () => {
   })
 
   const handleLogin = async (data: CreateLoginFormData) => {
-    console.log(data)
+    try {
+      const user = await client.post('/user/login', { data })
+
+      if (user.data) {
+        toast({
+          position: 'top-right',
+          title: 'Success',
+          isClosable: true,
+          status: 'success',
+        })
+        setCookie('token-login-ui-commerce', user.data.token)
+        push('/')
+      }
+    } catch (error: any) {
+      toast({
+        position: 'top-right',
+        title: error.response.data.message ?? 'Error',
+        isClosable: true,
+        status: 'error',
+      })
+    }
   }
 
   return (
