@@ -1,5 +1,6 @@
 'use client'
 import { client } from '@/data/axios'
+import { useToast } from '@chakra-ui/react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import Link from 'next/link'
 import { useForm } from 'react-hook-form'
@@ -18,6 +19,8 @@ const createRegisterFormSchema = z.object({
 type CreateRegisterFormData = z.infer<typeof createRegisterFormSchema>
 
 const Register = () => {
+  const toast = useToast()
+
   const {
     register,
     handleSubmit,
@@ -27,8 +30,26 @@ const Register = () => {
   })
 
   const handleRegister = async (data: CreateRegisterFormData) => {
-    console.log(data)
-    await client.post('/user/create', { data })
+    try {
+      const user = await client.post('/user/create', { data })
+
+      if (user.data) {
+        console.log(user.data)
+        toast({
+          position: 'top-right',
+          title: 'Success',
+          isClosable: true,
+          status: 'success',
+        })
+      }
+    } catch (error: any) {
+      toast({
+        position: 'top-right',
+        title: error.response.data.message ?? 'Error',
+        isClosable: true,
+        status: 'error',
+      })
+    }
   }
 
   return (
