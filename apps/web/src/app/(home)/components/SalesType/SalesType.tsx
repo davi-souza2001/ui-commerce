@@ -1,3 +1,5 @@
+'use client'
+import UseProduct from '@/service/hooks/UseProduct'
 import { Slider } from '..'
 
 type SalesTypeProps = {
@@ -5,6 +7,8 @@ type SalesTypeProps = {
 }
 
 export const SalesType = ({ type }: SalesTypeProps) => {
+  const { products } = UseProduct()
+
   return (
     <>
       <div className="h-12 w-full flex items-center justify-start mb-10 mt-5">
@@ -12,7 +16,7 @@ export const SalesType = ({ type }: SalesTypeProps) => {
         <p className="ml-2 font-bold text-red-500">Today&apos;s</p>
       </div>
       <p className="text-2xl font-bold font-roboto mb-2">{type}</p>
-      <Slider />
+      <Slider products={products} />
     </>
   )
 }
