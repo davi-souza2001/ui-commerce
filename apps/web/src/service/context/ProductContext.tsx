@@ -23,10 +23,10 @@ export function ProductProvider(props: any) {
 
   const getProducts = async () => {
     try {
-      const products = await client.get('/product/list')
+      const response = await client.get('/product/list')
 
-      if (products.data) {
-        setProduct(products.data)
+      if (response?.data?.products) {
+        setProduct(response.data.products)
       }
     } catch (error: any) {
       toast({

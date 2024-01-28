@@ -15,22 +15,19 @@ export const Slider = ({ products }: SliderProps) => {
     },
   })
 
-  console.log('products :>> ', typeof products)
-
   return (
     <div ref={ref} className="keen-slider">
-      {Array.isArray(products) &&
-        products?.map((item, index) => {
-          return (
-            <ProductCard
-              key={item.id}
-              productDescription={item.description}
-              productImage={item.image}
-              productPrice={item.price}
-              slidePosition={index}
-            />
-          )
-        })}
+      {products?.map((item, index) => {
+        return (
+          <ProductCard
+            key={item.id}
+            productDescription={item.description}
+            productImage={item.image}
+            productPrice={item.price}
+            slidePosition={index}
+          />
+        )
+      })}
     </div>
   )
 }
