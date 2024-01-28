@@ -13,10 +13,11 @@ npx create-turbo@latest
 TODO: 
 
 - [ ] change to react-query
-- [ ] use zustand
+- [x] use zustand
 - [ ] add socket
 - [ ] add ia
 - [ ] change carroussel to shadcn
+- [ ] implements different types of render page
 - [ ] add tests (backend and cypress)
 - [ ] check if email is valid in create and login
 - [ ] improve the code (architecture and interface)

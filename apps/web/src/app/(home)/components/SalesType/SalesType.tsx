@@ -1,6 +1,7 @@
 'use client'
 import UseProduct from '@/service/hooks/UseProduct'
 import { Slider } from '..'
+import { useProductStore } from '@/store'
 
 type SalesTypeProps = {
   type: string
@@ -8,6 +9,9 @@ type SalesTypeProps = {
 
 export const SalesType = ({ type }: SalesTypeProps) => {
   const { products } = UseProduct()
+  const { products: test } = useProductStore()
+
+  console.log('test :>> ', test)
 
   return (
     <>
