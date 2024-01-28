@@ -10,16 +10,16 @@ import {
   Divider,
 } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
+import { ProductCardProps } from '../components/Slider/components/ProductCard'
 
 const Cart = () => {
-  const [itemsCart, setItemsCart] = useState([])
+  const [itemsCart, setItemsCart] = useState<ProductCardProps[]>([])
 
   const getItemsCart = () => {
     const arrayString = localStorage.getItem('myCartUicommerce')
     const cartItems = arrayString ? JSON.parse(arrayString) : []
     return cartItems
   }
-  console.log('itemsCart :>> ', itemsCart)
 
   useEffect(() => {
     setItemsCart(getItemsCart())
@@ -43,24 +43,16 @@ const Cart = () => {
                 </Tr>
               </Thead>
               <Tbody>
-                <Tr>
-                  <Td>inches</Td>
-                  <Td>millimetres (mm)</Td>
-                  <Td>25.4</Td>
-                  <Td isNumeric>25.4</Td>
-                </Tr>
-                <Tr>
-                  <Td>feet</Td>
-                  <Td>centimetres (cm)</Td>
-                  <Td>30.48</Td>
-                  <Td isNumeric>30.48</Td>
-                </Tr>
-                <Tr>
-                  <Td>yards</Td>
-                  <Td>metres (m)</Td>
-                  <Td>0.91444</Td>
-                  <Td isNumeric>0.91444</Td>
-                </Tr>
+                {itemsCart.map((item, index) => {
+                  return (
+                    <Tr key={index}>
+                      <Td>{item.productName}</Td>
+                      <Td>{item.productPrice}</Td>
+                      <Td>1</Td>
+                      <Td isNumeric>{item.productPrice}</Td>
+                    </Tr>
+                  )
+                })}
               </Tbody>
             </Table>
           </TableContainer>

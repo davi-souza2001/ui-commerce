@@ -20,12 +20,13 @@ export const Slider = ({ products }: SliderProps) => {
       {products?.map((item, index) => {
         return (
           <ProductCard
+            addToCart
             key={item.id}
-            productDescription={item.description}
+            slidePosition={index}
+            productName={item.name}
             productImage={item.image}
             productPrice={item.price}
-            slidePosition={index}
-            addToCart
+            productDescription={item.description}
           />
         )
       })}

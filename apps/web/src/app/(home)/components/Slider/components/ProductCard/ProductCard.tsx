@@ -1,12 +1,13 @@
 import Image from 'next/image'
 import { MdOutlineShoppingCart } from 'react-icons/md'
 
-type ProductCardProps = {
+export type ProductCardProps = {
   slidePosition?: number
   addToCart?: boolean
   productDescription?: string
   productImage?: string
   productPrice?: number
+  productName?: string
 }
 
 export const ProductCard = ({
@@ -15,12 +16,14 @@ export const ProductCard = ({
   productDescription,
   productImage,
   productPrice,
+  productName,
 }: ProductCardProps) => {
   const handleAddToCart = () => {
     const productData = {
       productDescription,
       productImage,
       productPrice,
+      productName,
     }
     const arrayString = localStorage.getItem('myCartUicommerce')
     const cartItems = arrayString ? JSON.parse(arrayString) : []
@@ -28,7 +31,6 @@ export const ProductCard = ({
     cartItems.push(productData)
 
     localStorage.setItem('myCartUicommerce', JSON.stringify(cartItems))
-    console.log('adicionado')
   }
 
   return (

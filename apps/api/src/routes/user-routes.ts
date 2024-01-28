@@ -11,7 +11,6 @@ const prismaUserRepository = new PrismaUsers()
 export async function userRoutes(app: FastifyInstance) {
     app.post('/user/create', async (req, res) => {
         const info = req.body as CreateUserServiceRequest
-        console.log('info.data :>> ', info)
         const { email, name, password } = info.data ?? info
         const createUserService = new CreateUserService(prismaUserRepository)
 
