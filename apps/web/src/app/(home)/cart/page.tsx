@@ -1,7 +1,7 @@
+'use client'
 import {
   TableContainer,
   Table,
-  TableCaption,
   Thead,
   Tr,
   Th,
@@ -9,8 +9,22 @@ import {
   Td,
   Divider,
 } from '@chakra-ui/react'
+import { useEffect, useState } from 'react'
 
 const Cart = () => {
+  const [itemsCart, setItemsCart] = useState([])
+
+  const getItemsCart = () => {
+    const arrayString = localStorage.getItem('myCartUicommerce')
+    const cartItems = arrayString ? JSON.parse(arrayString) : []
+    return cartItems
+  }
+  console.log('itemsCart :>> ', itemsCart)
+
+  useEffect(() => {
+    setItemsCart(getItemsCart())
+  }, [])
+
   return (
     <main className="min-h-screen w-full p-5">
       <div className="py-5 pl-6">

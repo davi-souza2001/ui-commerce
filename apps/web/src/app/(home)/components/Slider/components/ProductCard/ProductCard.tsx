@@ -16,6 +16,21 @@ export const ProductCard = ({
   productImage,
   productPrice,
 }: ProductCardProps) => {
+  const handleAddToCart = () => {
+    const productData = {
+      productDescription,
+      productImage,
+      productPrice,
+    }
+    const arrayString = localStorage.getItem('myCartUicommerce')
+    const cartItems = arrayString ? JSON.parse(arrayString) : []
+
+    cartItems.push(productData)
+
+    localStorage.setItem('myCartUicommerce', JSON.stringify(cartItems))
+    console.log('adicionado')
+  }
+
   return (
     <div
       className={`h-80 w-72 flex flex-col items-center justify-start cursor-pointer mx-5 keen-slider__slide number-slide${slidePosition}`}
@@ -33,9 +48,12 @@ export const ProductCard = ({
         <div className="w-full flex items-center justify-between">
           <p className="text-red-500">${productPrice}</p>
           {addToCart && (
-            <p className="flex items-center justify-center text-gray-500 cursor-pointer gap-x-3 hover:text-gray-700">
+            <button
+              onClick={handleAddToCart}
+              className="flex items-center justify-center text-gray-500 cursor-pointer gap-x-3 hover:text-gray-700"
+            >
               Add to cart <MdOutlineShoppingCart />
-            </p>
+            </button>
           )}
         </div>
       </div>

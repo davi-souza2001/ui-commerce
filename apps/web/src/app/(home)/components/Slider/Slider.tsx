@@ -25,6 +25,7 @@ export const Slider = ({ products }: SliderProps) => {
             productImage={item.image}
             productPrice={item.price}
             slidePosition={index}
+            addToCart
           />
         )
       })}
