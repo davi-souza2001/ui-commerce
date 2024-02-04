@@ -3,6 +3,7 @@ import { ChakraProvider } from '@chakra-ui/react'
 import { Poppins, Roboto } from 'next/font/google'
 
 import './globals.css'
+import { TanstackProvider } from '@/service/context/queryClient'
 
 const poppins = Poppins({
   weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
@@ -29,7 +30,9 @@ export default function RootLayout({
   return (
     <html className={`${poppins.variable} ${roboto.variable}`}>
       <body className="font-sans">
-        <ChakraProvider>{children}</ChakraProvider>
+        <TanstackProvider>
+          <ChakraProvider>{children}</ChakraProvider>
+        </TanstackProvider>
       </body>
     </html>
   )

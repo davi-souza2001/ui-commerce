@@ -1,4 +1,4 @@
-import { ProductProps } from '@/service/context/ProductContext'
+import { ProductProps } from '@/api/endpoints/products/type'
 import { create } from 'zustand'
 
 interface ProductsStore {

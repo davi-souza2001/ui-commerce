@@ -2,7 +2,7 @@
 import { useKeenSlider } from 'keen-slider/react'
 import 'keen-slider/keen-slider.min.css'
 import { ProductCard } from './components/ProductCard'
-import { ProductProps } from '@/service/context/ProductContext'
+import { ProductProps } from '@/api/endpoints/products/type'
 
 interface SliderProps {
   products?: ProductProps[]

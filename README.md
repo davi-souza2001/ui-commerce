@@ -10,9 +10,18 @@ Run the following command:
 npx create-turbo@latest
 ```
 
+TECHS:
+
+- [x] react query
+- [x] zustand
+- [x] chakra
+- [ ] socket
+- [ ] ia
+- [ ] cypress
+
 TODO: 
 
-- [ ] change to react-query
+- [x] change to react-query
 - [x] use zustand
 - [ ] add socket
 - [ ] add ia

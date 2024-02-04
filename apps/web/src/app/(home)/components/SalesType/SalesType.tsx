@@ -1,17 +1,13 @@
 'use client'
-import UseProduct from '@/service/hooks/UseProduct'
 import { Slider } from '..'
-import { useProductStore } from '@/store'
+import { useGetProducts } from '@/api/endpoints'
 
 type SalesTypeProps = {
   type: string
 }
 
 export const SalesType = ({ type }: SalesTypeProps) => {
-  const { products } = UseProduct()
-  const { products: test } = useProductStore()
-
-  console.log('test :>> ', test)
+  const { data } = useGetProducts()
 
   return (
     <>
@@ -20,7 +16,7 @@ export const SalesType = ({ type }: SalesTypeProps) => {
         <p className="ml-2 font-bold text-red-500">Today&apos;s</p>
       </div>
       <p className="text-2xl font-bold font-roboto mb-2">{type}</p>
-      <Slider products={products} />
+      <Slider products={data?.products} />
     </>
   )
 }
