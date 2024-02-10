@@ -5,4 +5,5 @@ export const useGetProducts = () =>
   useQuery({
     queryKey: ['products'],
     queryFn: () => getProducts(),
+    staleTime: 1000 * 60, // 1 minute
   })

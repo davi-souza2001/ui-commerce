@@ -15,14 +15,17 @@ TECHS:
 - [x] react query
 - [x] zustand
 - [x] chakra
-- [ ] socket
-- [ ] ia
+- [x] socket
 - [ ] cypress
 
 TODO: 
 
 - [x] change to react-query
 - [x] use zustand
+- [ ] Remove data in api and returns objects for test
+- [ ] Think to strategy to litenig mensages (pub sub rocket or send message via socket)
+- [ ] Add lint in front and back
+- [ ] explore differents ways to use render in react-query
 - [ ] add socket
 - [ ] add ia
 - [ ] change carroussel to shadcn
