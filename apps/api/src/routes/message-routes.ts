@@ -28,13 +28,28 @@ export async function messageRoutes(app: FastifyInstance) {
         }
     })
 
-    app.get('/message/list', { websocket: true }, async (connection) => {
-        connection.socket.on('message', async () => {
-            const listMessageService = new ListMessageService(prismaMessageRepository)
+    app.get('/message/list',  async (req, res) => {
+        const listMessageService = new ListMessageService(prismaMessageRepository)
+
+        try {
             const messages = await listMessageService.execute()
-            const parseJson = JSON.stringify(messages)
-            connection.socket.send('teste' + parseJson)
-        })
-        
+
+            return res.status(201).send(messages)
+        } catch (error) {
+            if (error instanceof Error) {
+                return res.status(401).send({ message: error.message })
+            } else {
+                return res.status(500).send({ message: 'Internal server error' })
+            }
+        }
     })
+    
+    // app.get('/message/list', { websocket: true }, async (connection) => {
+    //     connection.socket.on('message', async () => {
+    //         const listMessageService = new ListMessageService(prismaMessageRepository)
+    //         const messages = await listMessageService.execute()
+    //         const parseJson = JSON.stringify(messages)
+    //         connection.socket.send('teste' + parseJson)
+    //     })
+    // })
 }
