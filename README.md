@@ -23,13 +23,11 @@ TODO:
 - [x] change to react-query
 - [x] use zustand
 - [ ] Remove data in api and returns objects for test
-- [ ] Think to strategy to litenig mensages (pub sub rocket or send message via socket)
+- [x] Think to strategy to litenig mensages (pub sub rocket or send message via socket)
 - [ ] Add lint in front and back
 - [ ] explore differents ways to use render in react-query
-- [ ] add socket
-- [ ] add ia
+- [x] add socket
 - [ ] change carroussel to shadcn
-- [ ] implements different types of render page
 - [ ] add tests (backend and cypress)
 - [ ] check if email is valid in create and login
 - [ ] improve the code (architecture and interface)

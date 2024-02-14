@@ -1,6 +1,6 @@
-type Message = { pollOptionId: string, votes: number }
+import { MessageCreateData } from '../repositories/message'
 
-type Subscriber = (message: Message) => void
+type Subscriber = (message: MessageCreateData) => void
 
 class VotingPubSub {
     private channels: Record<string, Subscriber[]> = {}
@@ -13,7 +13,7 @@ class VotingPubSub {
         this.channels[pollId]?.push(subscriber)
     }
  
-    publish(pollId: string, message: Message) {
+    publish(pollId: string, message: MessageCreateData) {
         if (!this.channels[pollId]) {
             return
         }

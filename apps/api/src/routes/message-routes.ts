@@ -18,7 +18,10 @@ export async function messageRoutes(app: FastifyInstance) {
                 userId
             }})
 
-            voting.publish(userId, { pollOptionId: '1', votes: 1 })
+            voting.publish(userId, {
+                text,
+                userId
+            })
 
             return res.status(201).send({ message: 'Message created' })
         } catch (error) {
