@@ -6,13 +6,15 @@ export class PrismaUsers implements Users {
     async create(data: UserCreateData) {
         const passwordHash = encryptPassword(data.password)
 
-        await prisma.user.create({
+        const user = await prisma.user.create({
             data: {
                 name: data.name,
                 email: data.email,
                 password: passwordHash,
             }
         })
+
+        return user
     }
 
     async list() {

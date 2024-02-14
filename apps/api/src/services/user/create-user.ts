@@ -28,10 +28,12 @@ export class CreateUserService {
             throw new Error('Password is required!')
         }
 
-        await this.userRepository.create({
+        const user = await this.userRepository.create({
             email,
             name,
             password,
         })
+
+        return user
     }
 }

@@ -22,31 +22,33 @@ const deleteUser = new DeleteUserService(repoSpy)
 
 describe('Tests for users', () => {
     it('Should be able to create a user', async () => {
-        const user = await createUser.execute({data: {
+        await createUser.execute({data: {
             name: 'John Doe',
             email: 'test@test.com',
             password: '123456'
         }})
 
-        expect(user).toBeTruthy()
+        expect(createUserSpy).toHaveBeenCalled()
     })
 
     it('Should be able to list users', async () => {
-        expect(await listUser.execute()).toBeTruthy()
+        await listUser.execute()
+
+        expect(listUserSpy).toHaveBeenCalled()
     })
 
     it('Should be able to login', async () => {
-        const user = await loginUser.execute({data: {
+        await loginUser.execute({data: {
             email: 'teste@gmail.com',
             password: '123456'
         }})
 
-        expect(user).toBeTruthy()
+        expect(loginUserSpy).toHaveBeenCalled()
     })
 
     it('Should be able to delete a user', async () => {
-        const user = await deleteUser.execute('test@gmail.com')
+        await deleteUser.execute('test@gmail.com')
 
-        expect(user).toBeTruthy()
+        expect(deleteUserSpy).toHaveBeenCalled()
     })
 })
