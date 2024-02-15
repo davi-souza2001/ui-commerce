@@ -1,6 +1,5 @@
 'use client'
-import { useKeenSlider } from 'keen-slider/react'
-import 'keen-slider/keen-slider.min.css'
+import { Carousel, CarouselContent } from '@/components/ui/carousel'
 import { ProductCard } from './components/ProductCard'
 import { ProductProps } from '@/api/endpoints/products/type'
 
@@ -9,14 +8,9 @@ interface SliderProps {
 }
 
 export const Slider = ({ products }: SliderProps) => {
-  const [ref] = useKeenSlider<HTMLDivElement>({
-    slides: {
-      perView: 6,
-    },
-  })
-
   return (
-    <div ref={ref} className="keen-slider">
+    <Carousel className='w-full h-full'>
+      <CarouselContent>
       {products?.map((item, index) => {
         return (
           <ProductCard
@@ -30,6 +24,7 @@ export const Slider = ({ products }: SliderProps) => {
           />
         )
       })}
-    </div>
+      </CarouselContent>
+    </Carousel>
   )
 }
