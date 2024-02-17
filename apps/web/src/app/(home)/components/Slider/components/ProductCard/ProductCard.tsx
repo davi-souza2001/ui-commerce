@@ -1,3 +1,4 @@
+'use client'
 import Image from 'next/image'
 import { MdOutlineShoppingCart } from 'react-icons/md'
 
@@ -11,7 +12,6 @@ export type ProductCardProps = {
 }
 
 export const ProductCard = ({
-  slidePosition,
   addToCart,
   productDescription,
   productImage,
@@ -34,9 +34,7 @@ export const ProductCard = ({
   }
 
   return (
-    <div
-      className={`h-80 w-72 flex flex-col items-center justify-start cursor-pointer mx-5 keen-slider__slide number-slide${slidePosition}`}
-    >
+    <div className="h-80 w-72 flex flex-col items-center justify-start cursor-pointer mx-5">
       <div className="h-56 w-full flex items-center justify-center bg-gray-300 rounded-lg">
         <Image
           alt="product image"

@@ -9,21 +9,21 @@ interface SliderProps {
 
 export const Slider = ({ products }: SliderProps) => {
   return (
-    <Carousel className='w-full h-full'>
+    <Carousel className="w-full h-full">
       <CarouselContent>
-      {products?.map((item, index) => {
-        return (
-          <ProductCard
-            addToCart
-            key={item.id}
-            slidePosition={index}
-            productName={item.name}
-            productImage={item.image}
-            productPrice={item.price}
-            productDescription={item.description}
-          />
-        )
-      })}
+        {products?.map((item, index) => {
+          return (
+            <ProductCard
+              addToCart
+              key={item.id}
+              slidePosition={index}
+              productName={item.name}
+              productImage={item.image}
+              productPrice={item.price}
+              productDescription={item.description}
+            />
+          )
+        })}
       </CarouselContent>
     </Carousel>
   )
