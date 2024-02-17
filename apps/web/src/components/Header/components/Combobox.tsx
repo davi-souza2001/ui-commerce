@@ -16,33 +16,12 @@ import {
 import Image from 'next/image'
 import { CheckIcon } from 'lucide-react'
 import { useState } from 'react'
-
-const frameworks = [
-  {
-    value: 'next.js',
-    label: 'Next.js',
-  },
-  {
-    value: 'sveltekit',
-    label: 'SvelteKit',
-  },
-  {
-    value: 'nuxt.js',
-    label: 'Nuxt.js',
-  },
-  {
-    value: 'remix',
-    label: 'Remix',
-  },
-  {
-    value: 'astro',
-    label: 'Astro',
-  },
-]
+import { useGetProducts } from '@/api/endpoints'
 
 export function Combobox() {
   const [open, setOpen] = useState(false)
   const [value, setValue] = useState('')
+  const { data } = useGetProducts()
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -64,22 +43,22 @@ export function Combobox() {
       <PopoverContent className="w-[200px] p-0">
         <Command>
           <CommandInput placeholder="Search framework..." className="h-9" />
-          <CommandEmpty>No framework found.</CommandEmpty>
+          <CommandEmpty>No Product found.</CommandEmpty>
           <CommandGroup>
-            {frameworks.map((framework) => (
+            {data?.products.map((product) => (
               <CommandItem
-                key={framework.value}
-                value={framework.value}
+                key={product.id}
+                value={product.name}
                 onSelect={(currentValue) => {
                   setValue(currentValue === value ? '' : currentValue)
                   setOpen(false)
                 }}
               >
-                {framework.label}
+                {product.name}
                 <CheckIcon
                   className={cn(
                     'ml-auto h-4 w-4',
-                    value === framework.value ? 'opacity-100' : 'opacity-0',
+                    value === product.name ? 'opacity-100' : 'opacity-0',
                   )}
                 />
               </CommandItem>
