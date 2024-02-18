@@ -27,6 +27,9 @@ TODO:
 - [x] explore differents ways to use render in react-query
 - [x] add socket
 - [x] change carroussel to shadcn
-- [ ] add tests (backend and cypress)
+- [x] add tests (backend and cypress)
 - [ ] check if email is valid in create and login
 - [ ] finish chat in front
+    - [ ] get user in store
+    - [ ] user userId to create a new message
+    - [ ] use socket to get new messages

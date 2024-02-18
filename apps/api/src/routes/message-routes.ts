@@ -3,6 +3,7 @@ import { FastifyInstance } from 'fastify'
 import { PrismaMessage } from '../repositories/prisma/prisma-message'
 import { CreateMessageService, CreateMessageServiceRequest } from '../services/message/create-message'
 import { voting } from '../utils/pubSub'
+import { ListMessageService } from '../services/message/list-message'
 
 const prismaMessageRepository = new PrismaMessage()
 
@@ -33,21 +34,21 @@ export async function messageRoutes(app: FastifyInstance) {
         }
     })
 
-    // app.get('/message/list',  async (req, res) => {
-    //     const listMessageService = new ListMessageService(prismaMessageRepository)
+    app.get('/message/list',  async (req, res) => {
+        const listMessageService = new ListMessageService(prismaMessageRepository)
 
-    //     try {
-    //         const messages = await listMessageService.execute()
+        try {
+            const messages = await listMessageService.execute()
 
-    //         return res.status(201).send(messages)
-    //     } catch (error) {
-    //         if (error instanceof Error) {
-    //             return res.status(401).send({ message: error.message })
-    //         } else {
-    //             return res.status(500).send({ message: 'Internal server error' })
-    //         }
-    //     }
-    // })
+            return res.status(201).send(messages)
+        } catch (error) {
+            if (error instanceof Error) {
+                return res.status(401).send({ message: error.message })
+            } else {
+                return res.status(500).send({ message: 'Internal server error' })
+            }
+        }
+    })
     
     app.get('/message/list/:id', { websocket: true }, async (connection, req) => {
         const { id } = req.params as { id: string }
