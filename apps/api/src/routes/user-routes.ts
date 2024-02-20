@@ -53,7 +53,7 @@ export async function userRoutes(app: FastifyInstance) {
 
     app.post('/user/login', async (req, res) => {
         const info = req.body as LoginUserServiceRequest
-        const {email, password } = info.data ?? info
+        const { email, password } = info.data ?? info
         const loginUserService = new LoginUserService(prismaUserRepository)
 
         try {

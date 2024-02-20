@@ -22,6 +22,8 @@
     "cmdk": "^0.2.1",
     "embla-carousel-react": "^8.0.0-rc22",
     "framer-motion": "^10.16.12",
+    "js-cookie": "^3.0.5",
+    "jsonwebtoken": "^9.0.2",
     "lucide-react": "^0.331.0",
     "next": "14.0.3",
     "react": "^18",
@@ -33,6 +35,8 @@
   },
   "devDependencies": {
     "@rocketseat/eslint-config": "^2.1.0",
+    "@types/js-cookie": "^3.0.6",
+    "@types/jsonwebtoken": "^9.0.5",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

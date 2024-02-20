@@ -34,6 +34,7 @@ export class PrismaUsers implements Users {
 
         if (passwordMatch) {
             const user: UserCreateData = {
+                id: userRequest?.id ?? '',
                 name: userRequest?.name ?? '',
                 email: userRequest?.email ?? '',
                 password: userRequest?.password ?? '',
