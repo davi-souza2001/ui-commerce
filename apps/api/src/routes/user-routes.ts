@@ -1,21 +1,24 @@
 import { FastifyInstance } from 'fastify'
 
-import { CreateUserService, CreateUserServiceRequest } from '../services/user/create-user'
+import {  CreateUserServiceRequest } from '../services/user/create-user'
 import { PrismaUsers } from '../repositories/prisma/prisma-user'
 import { ListUserService } from '../services/user/list-user'
 import { LoginUserService, LoginUserServiceRequest } from '../services/user/login-user'
 import { DeleteUserService } from '../services/user/delete-user'
+import { UserService } from '../core/user'
+import UserCollection from '../adapters/stores/UserCollection'
 
 const prismaUserRepository = new PrismaUsers()
+
+const userService = new UserService(new UserCollection())
 
 export async function userRoutes(app: FastifyInstance) {
     app.post('/user/create', async (req, res) => {
         const info = req.body as CreateUserServiceRequest
         const { email, name, password } = info.data ?? info
-        const createUserService = new CreateUserService(prismaUserRepository)
 
         try {
-            await createUserService.execute({data: {email, name, password}})
+            await userService.create({email, name, password})
 
             const token = app.jwt.sign({
                 payload: {
